@@ -67,22 +67,21 @@ public class Controller {
 
         st.close();
 
-        String sqlUpdate = "UPDATE kontakty SET imie = ?, nazwisko = ?, telefon = ? WHERE id_kontaktu = ?";
+        String sqlUpdate = "UPDATE kontakty SET imie = ?, nazwisko = ?, telefon = ? WHERE id_kontaktu = " + index;
         PreparedStatement ps = dao.getCon().prepareStatement(sqlUpdate);
 
-        ps.setInt(1, dotID);
         if(!imie.equals("")){
-            ps.setString(2, imie);
+            ps.setString(1, imie);
         } else{
-            ps.setString(2, dotImie);
+            ps.setString(1, dotImie);
         } if(!nazwisko.equals("")){
-            ps.setString(3, nazwisko);
+            ps.setString(2, nazwisko);
         } else{
-            ps.setString(3, dotNazwisko);
+            ps.setString(2, dotNazwisko);
         } if(!telefon.equals("")){
-            ps.setString(4, telefon);
+            ps.setString(3, telefon);
         } else{
-            ps.setString(4, dotTelefon);
+            ps.setString(3, dotTelefon);
         }
         ps.execute();
         ps.close();
